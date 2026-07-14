@@ -15,3 +15,7 @@ Route::get('/profil', [ProfilController::class, 'index'])
 
 Route::get('/tentang', [TentangController::class, 'index'])
     ->name('tentang');
+
+Route::get('/mahasiswa/{id}', [ProfilController::class, 'show'])
+    ->name('mahasiswa.show');
+

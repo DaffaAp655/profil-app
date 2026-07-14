@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
+
 class ProfilController extends Controller
 {
     public function index()
     {
-        $mahasiswa = [
-            'nama' => 'Daffa Adillah Putra',
-            'nim' => '3337250100',
-            'prodi' => 'Informatika',
-            'angkatan' => 2025,
-            'ipk' => 4.00,
-            'email' => 'daffaap655@gmail.com',
-            'github' => 'github.com/DaffaAp655',
-            'skill' => ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'Git'],
-            'bio' => 'Saya Daffa Adillah Putra, Mahasiswa Informatika UNTIRTA yang semangat belajar.',
-        ];
+        // Menggunakan nama variabel $mahasiswas (jamak)
+        $mahasiswas = Mahasiswa::orderBy('ipk', 'desc')->get();
 
-        return view('profil', compact('mahasiswa'));
+        // Mengirim ke view dengan nama 'mahasiswas'
+        return view('profil', compact('mahasiswas'));
+    }
+
+    public function show($id)
+    {
+        // Menggunakan $mahasiswa (tunggal)
+        $mahasiswa = Mahasiswa::findOrFail($id);
+
+        return view('profil-detail', compact('mahasiswa'));
     }
 }
