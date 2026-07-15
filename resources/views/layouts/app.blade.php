@@ -76,19 +76,40 @@
 
 <body>
     <nav class='navbar'>
-        <span class="brand">Pemrograman Web – UNTIRTA</span>
+        <span class="brand">Pemrograman Web | UNTIRTA</span>
         <div class="nav-links">
             <a href="{{ route('profil') }}" class="{{ request()->routeIs('profil') ? 'active' : '' }}">Profil</a>
+            <a href="{{ route('mahasiswas.index') }}" class="{{ request()->routeIs('mahasiswas.*') ? 'active' : '' }}">Kelola Mahasiswa</a>
             <a href="{{ route('tentang') }}" class="{{ request()->routeIs('tentang') ? 'active' : '' }}">Tentang</a>
         </div>
     </nav>
-
     <div class='container'>
-        @yield('content')
+
+    {{-- Flash message sukses --}}
+    @if(session('success'))
+        <div style='background:#dcfce7;color:#166534;
+                    border:1px solid #86efac;padding:14px;
+                    border-radius:8px;margin-bottom:16px;
+                    display:flex;align-items:center;gap:8px;'>
+            <span style='font-size:18px;'>✓</span>
+            <span>{{ session('success') }}</span>
+        </div>
+    @endif
+
+    {{-- Flash message error --}}
+    @if(session('error'))
+        <div style='background:#fee2e2;color:#991b1b;
+                    border:1px solid #fca5a5;padding:14px;
+                    border-radius:8px;margin-bottom:16px;'>
+            ⚠️ {{ session('error') }}
+        </div>
+    @endif
+
+    @yield('content')
     </div>
 
     <footer>
-        &copy; {{ date('Y') }} – Royan Habibie Sukarna
+        &copy; {{ date('Y') }} | Daffa Adillah Putra
     </footer>
 </body>
 
