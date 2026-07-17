@@ -70,6 +70,11 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswas.index')
                         ->with('success', 'Mahasiswa berhasil ditambahkan!');
     }
+    
+    public function show(string $id)
+    {
+        //
+    }
 
     public function destroy($id)
     {
