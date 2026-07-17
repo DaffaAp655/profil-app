@@ -12,9 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Panggil MahasiswaSeeder agar data mahasiswa dimasukkan
-        $this->call([
-            MahasiswaSeeder::class,
-        ]);
-    }
+        // Buat 1 akun admin default
+        User::factory()->create([
+        'name'     => 'Admin',
+        'email'    => 'admin@example.com',
+        'password' => bcrypt('password'),
+    ]);
+
+    $this->call([
+        MahasiswaSeeder::class,
+    ]);
+}
+
 }
